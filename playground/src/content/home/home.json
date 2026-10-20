@@ -1,0 +1,34 @@
+{
+  "title": "Home",
+  "sections": [
+    {
+      "_type": "hero",
+      "_key": "hero0001",
+      "heading": "Lorem ipsum dolor sit amet",
+      "text": "Consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "buttonLabel": "Read the articles",
+      "buttonHref": {
+        "href": "/articles"
+      },
+      "image": {
+        "src": "@/assets/cms/placeholder.svg",
+        "alt": "Soft purple and pink gradient"
+      }
+    },
+    {
+      "_type": "text",
+      "_key": "text0001",
+      "content": "<h2>Ut enim ad minim veniam</h2><p>Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <strong>Duis aute irure</strong> dolor in reprehenderit in voluptate velit esse.</p>"
+    },
+    {
+      "_type": "cta",
+      "_key": "cta00001",
+      "heading": "Excepteur sint occaecat",
+      "text": "Cupidatat non proident, sunt in culpa qui officia deserunt.",
+      "buttonLabel": "Get in touch",
+      "buttonHref": {
+        "href": "mailto:hello@example.com"
+      }
+    }
+  ]
+}

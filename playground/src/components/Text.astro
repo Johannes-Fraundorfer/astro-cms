@@ -1,0 +1,20 @@
+---
+import { cmsAttrs } from "@johannes-fraundorfer/astro-cms/runtime";
+
+interface Props {
+  content?: string;
+  /** CMS field path of this section. */
+  path?: string;
+}
+
+const { content = "", path = "" } = Astro.props;
+const cms = cmsAttrs(Astro);
+---
+
+<section class="text" {...cms.field(path, "block", "Rich Text")}>
+  <div {...cms.field(`${path}.content`, "rich", "Text")} set:html={content} />
+</section>
+
+<style>
+  .text { max-width: 640px; padding: 24px 0; }
+</style>

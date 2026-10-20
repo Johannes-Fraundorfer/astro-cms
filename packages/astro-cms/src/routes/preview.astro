@@ -1,0 +1,16 @@
+---
+import { matchPage } from "../server/pages.ts";
+import { DEFAULT_LOCALE, LOCALES } from "../runtime.ts";
+
+export const prerender = false;
+
+const match = matchPage(Astro.params.path ?? "", (value) => value !== DEFAULT_LOCALE && LOCALES.includes(value));
+if (!match) return new Response("No page matches this path", { status: 404 });
+
+Astro.locals.cmsPreview = true;
+const { Page, params } = match;
+// Pages read route params from props first, so the preview can hand them over
+// without going through getStaticPaths (which only lists published entries).
+---
+
+<Page {...params} />

@@ -1,0 +1,23 @@
+---
+import Base from "../layouts/Base.astro";
+import Hero from "../components/Hero.astro";
+import Text from "../components/Text.astro";
+import Cta from "../components/Cta.astro";
+import { cmsAttrs, cmsEntry } from "@johannes-fraundorfer/astro-cms/runtime";
+
+type Section = { _type: string; _key: string } & Record<string, unknown>;
+const page = await cmsEntry<{ title?: string; sections?: Section[] }>(Astro, "home", "home");
+const doc = cmsAttrs(Astro).doc(page);
+const components = { hero: Hero, text: Text, cta: Cta } as const;
+---
+
+<Base title={page?.data.title}>
+  <div {...doc}>
+    {
+      (page?.data.sections ?? []).map((section, i) => {
+        const Component = components[section._type as keyof typeof components];
+        return Component ? <Component {...(section as any)} path={`sections.${i}`} /> : null;
+      })
+    }
+  </div>
+</Base>

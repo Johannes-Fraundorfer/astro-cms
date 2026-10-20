@@ -1,0 +1,41 @@
+---
+import { Image } from "astro:assets";
+import { cmsAttrs, cmsImage, cmsLinkAttrs, cmsVideo } from "@johannes-fraundorfer/astro-cms/runtime";
+
+interface Props {
+  heading?: string;
+  text?: string;
+  buttonLabel?: string;
+  buttonHref?: unknown;
+  image?: unknown;
+  video?: unknown;
+  /** CMS field path of this section. */
+  path?: string;
+}
+
+const { heading, text, buttonLabel, buttonHref, image, video, path = "" } = Astro.props;
+const cms = cmsAttrs(Astro);
+const link = await cmsLinkAttrs(Astro, buttonHref);
+const img = cmsImage(image);
+const vid = cmsVideo(video);
+---
+
+<section class="hero" {...cms.field(path, "block", "Hero")}>
+  <div>
+    <h1 {...cms.field(`${path}.heading`, "text", "Heading")}>{heading}</h1>
+    <p {...cms.field(`${path}.text`, "multiline", "Text")}>{text}</p>
+    {buttonLabel && <a class="button" {...link} {...cms.field(`${path}.buttonLabel`, "text", "Button")}>{buttonLabel}</a>}
+  </div>
+  {vid ? (
+    <video autoplay muted loop playsinline aria-label={vid.title} aria-hidden={vid.title ? undefined : "true"} {...cms.field(`${path}.video`, "video", "Video")}>
+      <source src={vid.src} type={vid.type} />
+    </video>
+  ) : img && <Image src={img.src as ImageMetadata} alt={img.alt ?? ""} width={640} height={427} {...cms.field(`${path}.image`, "image", "Image")} />}
+</section>
+
+<style>
+  .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; padding: 56px 0; }
+  video { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+  h1 { font-size: 2.6rem; line-height: 1.1; margin: 0 0 16px; }
+  @media (max-width: 720px) { .hero { grid-template-columns: 1fr; } }
+</style>

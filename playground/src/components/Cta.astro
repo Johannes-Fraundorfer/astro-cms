@@ -1,0 +1,27 @@
+---
+import { cmsAttrs, cmsLinkAttrs } from "@johannes-fraundorfer/astro-cms/runtime";
+
+interface Props {
+  heading?: string;
+  text?: string;
+  buttonLabel?: string;
+  buttonHref?: unknown;
+  /** CMS field path of this section. */
+  path?: string;
+}
+
+const { heading, text, buttonLabel, buttonHref, path = "" } = Astro.props;
+const cms = cmsAttrs(Astro);
+const link = await cmsLinkAttrs(Astro, buttonHref);
+---
+
+<section class="cta" {...cms.field(path, "block", "Call to Action")}>
+  <h2 {...cms.field(`${path}.heading`, "text", "Heading")}>{heading}</h2>
+  <p {...cms.field(`${path}.text`, "multiline", "Text")}>{text}</p>
+  {buttonLabel && <a class="button" {...link} {...cms.field(`${path}.buttonLabel`, "text", "Button")}>{buttonLabel}</a>}
+</section>
+
+<style>
+  .cta { margin: 40px 0; padding: 40px; border-radius: 16px; background: #eef2ff; text-align: center; }
+  h2 { margin: 0 0 8px; }
+</style>

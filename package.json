@@ -1,0 +1,14 @@
+{
+  "name": "astro-cms-repo",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "playground"
+  ],
+  "scripts": {
+    "build": "npm run build -w @johannes-fraundorfer/astro-cms",
+    "dev": "npm run build && npm run dev -w playground",
+    "check": "npm run build && npm run check -w playground"
+  }
+}

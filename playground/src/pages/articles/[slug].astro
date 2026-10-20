@@ -1,0 +1,28 @@
+---
+import { Image } from "astro:assets";
+import Base from "../../layouts/Base.astro";
+import { BUILD, cmsAttrs, cmsFind, cmsImage, cmsList } from "@johannes-fraundorfer/astro-cms/runtime";
+
+type Article = { title?: string; slug?: string; excerpt?: string; cover?: unknown; body?: string };
+
+export async function getStaticPaths() {
+  const articles = await cmsList<Article>(BUILD, "articles");
+  return articles.filter((a) => a.data.slug).map((a) => ({ params: { slug: a.data.slug } }));
+}
+
+// The dashboard preview passes route params as props, since it skips getStaticPaths.
+const slug = (Astro.props as { slug?: string }).slug ?? Astro.params.slug;
+const article = await cmsFind<Article>(Astro, "articles", "slug", slug);
+if (!article) return Astro.redirect("/404");
+const cms = cmsAttrs(Astro);
+const cover = cmsImage(article.data.cover);
+---
+
+<Base title={article.data.title} description={article.data.excerpt}>
+  <article {...cms.doc(article)}>
+    <h1 {...cms.field("title", "text", "Title")}>{article.data.title}</h1>
+    <p class="muted" {...cms.field("excerpt", "multiline", "Excerpt")}>{article.data.excerpt}</p>
+    {cover && <Image src={cover.src as ImageMetadata} alt={cover.alt ?? ""} width={960} height={640} {...cms.field("cover", "image", "Cover Image")} />}
+    <div {...cms.field("body", "rich", "Body")} set:html={article.data.body ?? ""} />
+  </article>
+</Base>

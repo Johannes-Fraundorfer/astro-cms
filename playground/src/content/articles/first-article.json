@@ -1,0 +1,10 @@
+{
+  "title": "First article",
+  "slug": "first-article",
+  "excerpt": "Pellentesque habitant morbi tristique senectus et netus.",
+  "cover": {
+    "src": "@/assets/cms/placeholder.svg",
+    "alt": "Soft purple and pink gradient"
+  },
+  "body": "<p>Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.</p>"
+}
