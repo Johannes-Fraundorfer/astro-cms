@@ -41,4 +41,13 @@ jobs:
       - name: Type check against the playground
         run: npm run check
 
-      - run: npm publish -w @johannes-fraundorfer/astro-cms
+      # A version published by hand (the first one, before trusted publishing
+      # could be set up) is skipped instead of failing the run.
+      - name: Publish unless this version is on npm already
+        run: |
+          version=$(node -p "require('./packages/astro-cms/package.json').version")
+          if npm view "@johannes-fraundorfer/astro-cms@$version" version >/dev/null 2>&1; then
+            echo "$version is already on npm; nothing to publish."
+          else
+            npm publish -w @johannes-fraundorfer/astro-cms
+          fi
