@@ -3,6 +3,14 @@
 Entries marked **Action needed** require changes in sites that upgrade; the
 `cms-upgrade` skill works through them.
 
+## 0.5.1
+
+Documentation only; no changes needed in sites.
+
+- The README explains how the CMS works, who it's for and its current limits,
+  starts with the install command and `init`, and gives a complete manual
+  setup (adapter, `session: false`, `wrangler.jsonc`, publishing, secrets).
+
 ## 0.5.0
 
 Public release: the package is now on npm under the MIT license.
