@@ -46,6 +46,26 @@ Limits today:
 - It's **0.x**: an update can need small changes in the site. The
   [changelog](CHANGELOG.md) marks those as **Action needed**.
 
+## Try the demo
+
+A small demo site with the CMS already set up, running locally. No accounts,
+no login. Needs Node 22.12+ and git.
+
+```bash
+git clone https://github.com/Johannes-Fraundorfer/astro-cms
+cd astro-cms
+npm install
+npm run dev
+```
+
+Open http://localhost:4321/admin. Click text on the canvas to edit it, add
+or rearrange sections, upload an image, then **Publish**: in the demo,
+publishing writes the JSON into `playground/src/content` instead of
+committing to GitHub, so you can see exactly what the CMS stores.
+
+On Windows, clone into a short path (like `C:\dev`): the local database files
+sit deep inside the folder, and very long paths can break them.
+
 ## Quick start
 
 ```bash

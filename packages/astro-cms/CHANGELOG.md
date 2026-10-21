@@ -3,6 +3,14 @@
 Entries marked **Action needed** require changes in sites that upgrade; the
 `cms-upgrade` skill works through them.
 
+## 0.5.3
+
+Documentation only; no changes needed in sites.
+
+- The README starts with a local demo: clone the repository, `npm run dev`,
+  and the dashboard runs at `/admin` with no accounts or login. Includes a
+  note for Windows about short folder paths.
+
 ## 0.5.2
 
 Documentation and packaging; no changes needed in sites. (0.5.1 was tagged

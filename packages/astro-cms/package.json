@@ -1,6 +1,6 @@
 {
   "name": "@johannes-fraundorfer/astro-cms",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "Git-backed content editing for Astro sites: a dashboard with a live canvas, drafts, translations and a media library.",
   "keywords": [
     "astro",
