@@ -3,13 +3,16 @@
 Entries marked **Action needed** require changes in sites that upgrade; the
 `cms-upgrade` skill works through them.
 
-## 0.5.1
+## 0.5.2
 
-Documentation only; no changes needed in sites.
+Documentation and packaging; no changes needed in sites. (0.5.1 was tagged
+but never reached npm.)
 
 - The README explains how the CMS works, who it's for and its current limits,
   starts with the install command and `init`, and gives a complete manual
   setup (adapter, `session: false`, `wrangler.jsonc`, publishing, secrets).
+- The `astro-cms` command is declared in the form npm expects, so publishing
+  no longer rewrites `package.json` with a warning.
 
 ## 0.5.0
 
