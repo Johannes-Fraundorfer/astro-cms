@@ -10,7 +10,7 @@
   "dependencies": {
     "@astrojs/cloudflare": "^14.3.3",
     "@johannes-fraundorfer/astro-cms": "*",
-    "astro": "^7.3.5"
+    "astro": "^7.4.12"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
